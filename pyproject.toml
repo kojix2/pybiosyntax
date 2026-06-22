@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pybiosyntax"
+version = "0.3.0"
+description = "Python bindings for libbiosyntax with a bundled C build"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "GPL-3.0-only"
+license-files = ["LICENSE.md"]
+authors = [
+  { name = "libbiosyntax contributors" }
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: C",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Text Editors :: Text Processing"
+]
+keywords = ["pybiosyntax", "biosyntax", "bioinformatics", "syntax-highlighting", "ctypes", "fasta", "fastq", "sam", "vcf"]
+
+[project.scripts]
+biosyntax = "biosyntax.__main__:main"
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+biosyntax = ["py.typed", "*.so", "*.dylib", "*.dll"]
