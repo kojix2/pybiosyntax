@@ -5,7 +5,7 @@ repo_url: https://github.com/kojix2/pybiosyntax
 repo_name: kojix2/pybiosyntax
 
 theme:
-  name: mkdocs
+  name: readthedocs
 
 nav:
   - Home: index.md
