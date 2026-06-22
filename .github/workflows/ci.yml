@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Upgrade packaging tools
+        run: python -m pip install --upgrade pip build
+
+      - name: Install pybiosyntax
+        run: python -m pip install .
+
+      - name: Run tests
+        run: python -m unittest discover -s tests
+
+      - name: Run example
+        run: python examples/basic.py
+
+      - name: Smoke test CLI
+        shell: bash
+        run: |
+          printf 'chr1\t42\trs1\tA\tT\t99\tPASS\n' > sample.vcf
+          python -m biosyntax sample.vcf | grep PASS
+
+  package:
+    name: Build sdist and wheel
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      - name: Upgrade packaging tools
+        run: python -m pip install --upgrade pip build
+
+      - name: Build distributions
+        run: python -m build
+
+      - name: Inspect artifacts
+        shell: bash
+        run: |
+          ls -l dist
+          python -m zipfile --list dist/*.whl | grep 'biosyntax/libbiosyntax\.so'
+          tar -tf dist/*.tar.gz | grep 'vendor/libbiosyntax/include/biosyntax\.h'
+          tar -tf dist/*.tar.gz | grep 'vendor/libbiosyntax/src/biosyntax\.c'
