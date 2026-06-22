@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pybiosyntax"
-version = "0.3.0"
+version = "0.1.0"
 description = "Python bindings for libbiosyntax with a bundled C build"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -42,3 +42,8 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 biosyntax = ["py.typed", "*.so", "*.dylib", "*.dll"]
+
+[tool.cibuildwheel]
+build = "cp310-* cp311-* cp312-* cp313-* cp314-*"
+skip = "pp* *-musllinux_*"
+test-command = "python {project}/tests/smoke_test_installed.py"

@@ -41,13 +41,26 @@ python -m build
 ```
 
 The output is written to `dist/`.
+This local wheel is only for local testing.
+Release wheels are built with `cibuildwheel`.
 
 ## Continuous integration
 
 GitHub Actions runs the test suite on Linux, macOS, and Windows.
 It uses the supported Python versions.
-It also builds the source distribution and wheel.
-The workflow checks that the bundled C source and shared library are present.
+It also builds the source distribution and a local wheel.
+The workflow checks that the bundled C source is present in the source distribution.
+It checks that the bundled shared library is present in the wheel.
+
+## Release wheels
+
+The publish workflow uses `cibuildwheel`.
+It builds manylinux, macOS, and Windows wheels.
+Each wheel is tested after it is built.
+The source distribution is built in a separate job.
+The publish job uploads all artifacts to PyPI.
+musllinux wheels are not built.
+Windows ARM64 wheels are not built.
 
 ## Notes
 

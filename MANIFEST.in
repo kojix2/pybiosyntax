@@ -1,4 +1,5 @@
 include LICENSE.md README.md mkdocs.yml
 recursive-include docs *.md
+recursive-include tests *.py
 include vendor/libbiosyntax/include/biosyntax.h
 include vendor/libbiosyntax/src/biosyntax.c
