@@ -1,0 +1,19 @@
+site_name: pybiosyntax
+site_description: Python bindings for libbiosyntax
+site_url: https://kojix2.github.io/pybiosyntax/
+repo_url: https://github.com/kojix2/pybiosyntax
+repo_name: kojix2/pybiosyntax
+
+theme:
+  name: mkdocs
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - API Reference: api.md
+  - Command Line: cli.md
+  - Development: development.md
+  - Vendoring: vendoring.md
+
+strict: true

@@ -1,3 +1,4 @@
-include LICENSE.md README.md
+include LICENSE.md README.md mkdocs.yml
+recursive-include docs *.md
 include vendor/libbiosyntax/include/biosyntax.h
 include vendor/libbiosyntax/src/biosyntax.c
