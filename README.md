@@ -1,6 +1,8 @@
 # pybiosyntax
 
 [![CI](https://github.com/kojix2/pybiosyntax/actions/workflows/ci.yml/badge.svg)](https://github.com/kojix2/pybiosyntax/actions/workflows/ci.yml)
+![PyPI - Version](https://img.shields.io/pypi/v/pybiosyntax)
+[![DOI](https://zenodo.org/badge/1276987726.svg)](https://doi.org/10.5281/zenodo.20799919)
 [![Lines of Code](https://img.shields.io/endpoint?url=https%3A%2F%2Ftokei.kojix2.net%2Fbadge%2Fgithub%2Fkojix2%2Fpybiosyntax%2Flines)](https://tokei.kojix2.net/github/kojix2/pybiosyntax)
 
 [pybiosyntax](https://github.com/kojix2/pybiosyntax) provides Python bindings for
