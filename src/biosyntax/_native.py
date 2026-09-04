@@ -8,7 +8,7 @@ import ctypes.util
 import os
 import pathlib
 import sys
-from typing import Dict, Iterable, Optional, Sequence
+from typing import Iterable, Optional, Sequence
 
 
 class CSpan(ctypes.Structure):

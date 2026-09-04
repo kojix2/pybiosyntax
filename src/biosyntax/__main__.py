@@ -16,11 +16,11 @@ def _input_lines(path: Optional[str]) -> Iterable[str]:
         yield from handle
 
 
-def _resolve_format(name: Optional[str], path: Optional[str]) -> Format:
+def _resolve_format(name: Optional[str], path: Optional[str], library_path: Optional[str] = None) -> Format:
     if name:
-        return format_from_name(name)
+        return format_from_name(name, library_path)
     if path and path != "-":
-        guessed = guess_format_from_path(path)
+        guessed = guess_format_from_path(path, library_path)
         if guessed != Format.UNKNOWN:
             return guessed
     return Format.UNKNOWN
@@ -34,7 +34,7 @@ def main(argv: Optional[Iterable[str]] = None, stdout: Optional[TextIO] = None) 
     args = parser.parse_args(list(argv) if argv is not None else None)
 
     out = stdout if stdout is not None else sys.stdout
-    fmt = _resolve_format(args.format, args.path)
+    fmt = _resolve_format(args.format, args.path, args.library)
     for rendered in render_ansi_lines(fmt, _input_lines(args.path), library_path=args.library):
         out.write(rendered)
     return 0

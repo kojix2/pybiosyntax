@@ -5,9 +5,10 @@ import io
 import os
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import biosyntax as bs
-from biosyntax.__main__ import main as cli_main
+from biosyntax.__main__ import _resolve_format, main as cli_main
 
 
 class PythonBindingTests(unittest.TestCase):
@@ -115,6 +116,16 @@ class PythonBindingTests(unittest.TestCase):
             self.assertIn("\x1b[", out.getvalue())
         finally:
             os.unlink(path)
+
+    def test_cli_library_override_during_format_resolution(self) -> None:
+        library_path = "/custom/libbiosyntax.so"
+        with patch("biosyntax.__main__.format_from_name", return_value=bs.Format.VCF) as resolve_name:
+            self.assertEqual(_resolve_format("vcf", None, library_path), bs.Format.VCF)
+            resolve_name.assert_called_once_with("vcf", library_path)
+
+        with patch("biosyntax.__main__.guess_format_from_path", return_value=bs.Format.VCF) as guess_path:
+            self.assertEqual(_resolve_format(None, "sample.vcf", library_path), bs.Format.VCF)
+            guess_path.assert_called_once_with("sample.vcf", library_path)
 
 
 if __name__ == "__main__":
