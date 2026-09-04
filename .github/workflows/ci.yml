@@ -67,5 +67,10 @@ jobs:
           ls -l dist
           python -m twine check dist/*
           python -m zipfile --list dist/*.whl | grep 'biosyntax/libbiosyntax\.so'
+          python -m zipfile --list dist/*.whl | grep 'licenses/LICENSE\.md'
+          python -m zipfile --list dist/*.whl | grep 'licenses/vendor/libbiosyntax/LICENSE\.md'
+          unzip -p dist/*.whl '*/METADATA' | grep -Fx 'License-Expression: MIT AND LGPL-2.1-or-later'
+          tar -tf dist/*.tar.gz | grep -E '^[^/]+/LICENSE\.md$'
+          tar -tf dist/*.tar.gz | grep 'vendor/libbiosyntax/LICENSE\.md'
           tar -tf dist/*.tar.gz | grep 'vendor/libbiosyntax/include/biosyntax\.h'
           tar -tf dist/*.tar.gz | grep 'vendor/libbiosyntax/src/biosyntax\.c'

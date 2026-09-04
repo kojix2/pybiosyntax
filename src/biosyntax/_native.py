@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 """ctypes loader for the libbiosyntax C ABI."""
 
 from __future__ import annotations

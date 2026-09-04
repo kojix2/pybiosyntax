@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 """Python bindings for libbiosyntax.
 
 The binding uses the libbiosyntax C shared library through ``ctypes`` and adds no

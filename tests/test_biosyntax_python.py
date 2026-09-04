@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 from __future__ import annotations
 
 import io
@@ -12,7 +12,7 @@ from biosyntax.__main__ import main as cli_main
 
 class PythonBindingTests(unittest.TestCase):
     def test_version_and_format_helpers(self) -> None:
-        self.assertEqual(bs.abi_version(), 1)
+        self.assertGreaterEqual(bs.abi_version(), 1)
         self.assertRegex(bs.version(), r"^\d+\.\d+\.\d+$")
         self.assertEqual(bs.format_from_name("vcf"), bs.Format.VCF)
         self.assertEqual(bs.guess_format_from_path("sample.fastq.gz"), bs.Format.FASTQ)

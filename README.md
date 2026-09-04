@@ -51,6 +51,12 @@ python -m pip install build
 python -m build
 ```
 
+## License
+
+The Python binding is licensed under the [MIT License](LICENSE.md).
+The bundled `libbiosyntax` C library is licensed under the
+[GNU Lesser General Public License version 2.1 or later](vendor/libbiosyntax/LICENSE.md).
+
 ## Documentation
 
 The documentation is in `docs/` and can be built with MkDocs.

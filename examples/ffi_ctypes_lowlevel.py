@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-License-Identifier: MIT
 """Minimal Python ctypes example for libbiosyntax.
 
 Usage with an explicit shared library path:

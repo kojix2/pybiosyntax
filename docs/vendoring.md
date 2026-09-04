@@ -37,8 +37,14 @@ To update the vendored code:
 1. Check the upstream `libbiosyntax` changes.
 2. Replace `vendor/libbiosyntax/include/biosyntax.h`.
 3. Replace `vendor/libbiosyntax/src/biosyntax.c`.
-4. Run the Python tests.
-5. Build the source distribution and wheel.
+4. Replace `vendor/libbiosyntax/LICENSE.md` if the upstream license changed.
+5. Update the Python package version in `pyproject.toml` as appropriate.
+6. Run the Python tests.
+7. Build the source distribution and wheel.
+
+The bundled C library version is reported at runtime by
+`biosyntax.version()` and is defined by the version macros in the vendored
+header. Tests validate its version format without duplicating a release number.
 
 Example commands:
 
@@ -51,5 +57,9 @@ python -m build
 
 ## License
 
-The vendored C code is GPL-3.0-only. The Python package uses the same license.
-See `LICENSE.md`.
+The Python binding is licensed under the MIT License.
+See [`LICENSE.md`](https://github.com/kojix2/pybiosyntax/blob/main/LICENSE.md).
+
+The vendored C code is licensed under the GNU Lesser General Public License
+version 2.1 or later (`LGPL-2.1-or-later`).
+See [`vendor/libbiosyntax/LICENSE.md`](https://github.com/kojix2/pybiosyntax/blob/main/vendor/libbiosyntax/LICENSE.md).
